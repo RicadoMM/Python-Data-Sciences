@@ -105,6 +105,7 @@ El paquete csv tiene mas metodos a parte del csv.reader, comentaremos algún int
 
 Los dialectos son los elementos que nos permiten delimitar nuestro fichero cuando no  tenemos comillas,etc
 Podemos registrar nuevos dialectos en el lector csv
+  
   import csv
   csv.register_dialect('nombre que le damos',"?") ? => es la variable que vamos a usar para delimitar
     with open(fichero_csv,'r',new line = '') as fichero:
@@ -117,6 +118,45 @@ Podemos registrar nuevos dialectos en el lector csv
     
   
 """
-#USO DE DICTREADER
+#csv.write
+import csv 
+with open(path,'w',new line = '') as fichero_csv:
+ writrer = csv.write(fichero_csv)
+ writrer.writerows(iterable) # podemos tambien escribir un vecotr myData = [["first_name", "second_name", "Grade"],
+                                                                             #['Alex', 'Brian', 'A'],
+                                                                             #['Tom', 'Smith', 'B']]
+ writer.writerow(fila_unica) #debemos de hacer un bulce para ir haciendo una a una.
+ 
+ #otro ejemplo de writer
+ with open(path,'w',new line = '') as fichero_csv:
+  writer = csv.writer(ficher_csv,delimeter =' ',quotechar = "?",quoting = csv.QUOTE_MINIMAL)#quotechar indica que valor usaremos para marcar lo que indique el quoting
+  writer.writerows(myData) 
+ 
 
-with open(path, 
+
+#USO DE DICTREADER, se trata de un metodo que devuelve por cada linea un diccionario con las claves indicadas en la cabecera del documento y el valor
+#dado en la fila correspondiente.
+
+with open(path, new line ='') as fichero_csv:
+ dic_lector = csv.DictReader(fichero_csv,fieldnames = {'Columna1','Columna2'}) #fieldnames es opcional, ahí podriamos especificar nuestras claves,
+ #en caso de no especificar nada ahí, el metodo crea las claves con las cabeceras, por lo que no tenemos que hacer el next(lector,None) para saltar la primera linea.
+ vector={}
+ for linea in dic_lector:
+   centro = linea['Nombre columna']
+   subvencion = float(linea['Dinero'])
+   if centro in vector:
+     vector[centro] = vector[centro]+ subvencion.
+     else:
+      vector[centro]= subvencion
+ 
+ 
+ #USO DE DICTWRITER --> AL igual que con DictReader tenemos por fila un diccionario.
+ with open (fichero_donde_escribimos,'w',new line ='') as fichero_csv:
+  fieldnames = ['emp_name', 'dept', 'birth_month']
+  writer = csv.DictWriter(fichero_csv,fieldnames = fieldnames)
+  writer.writeheader() ## Nos permite escribir en el fichero la cabecera del parametro fieldnames.
+
+    writer.writerow({'emp_name': 'John Smith', 'dept': 'Accounting', 'birth_month': 'November'})
+    writer.writerow({'emp_name': 'Erica Meyers', 'dept': 'IT', 'birth_month': 'March'})
+   
+#Finalente podemos obtener una una lista con todas las filas listoflineas = fichero_csv.readlines()
