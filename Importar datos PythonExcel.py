@@ -34,3 +34,36 @@ Vamos a explicar las funciones interesantes de estas librerias.
         
         
 """
+import xlrd
+import xlwt
+listado_valores = [] # no confundir con un diccionario que se declara con {}
+with xlrd.open_workbook(ruta) as libro_excel:
+  n_hojas = libro_excel.nsheets
+  if n_hojas == 3:
+    for hojas in libro_excel.sheets:
+      if hojas.name == 'Hoja1':
+        n_filas = hojas.nrows
+        n_columnas = hojas.ncols
+        for i in range(1,n_cols):
+          for j in range(1,n_filas):
+            fila = hojas.row[j]
+            valor_celda = filas[0] #estamos cogiendo la primera columna con respecto a la primera fial
+            if valor_celda not in listado_valores:
+              listado_valores.append(valor_celda)
+           
+          
+ print(listado_valores)
+"""
+De esta manera hemos recorrido todas las filas y todas las columnas de nuestro fichero excel que hemos cargado.
+Para crear un fichero excel deberemos de hacer uso de nuestra libreria xlwt como veremos en el ejemplo.
+"""
+import xlrd
+import xlwt
+
+libro_escribir = xlwt.Workbook()
+
+
+
+
+
+
