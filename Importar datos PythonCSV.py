@@ -127,7 +127,7 @@ with open(path,'w',new line = '') as fichero_csv:
                                                                              #['Tom', 'Smith', 'B']]
  writer.writerow(fila_unica) #debemos de hacer un bulce para ir haciendo una a una.
  
- #otro ejemplo de writer
+ #otro ejemplo de writer, en este caso se esta abriendo un fichero existente y sobreescribiendo, al poner 'w' se vacía lo que hay y se sobreescribe, si ponemos 'a' se adiere lo nuevo.
  with open(path,'w',new line = '') as fichero_csv:
   writer = csv.writer(ficher_csv,delimeter =' ',quotechar = "?",quoting = csv.QUOTE_MINIMAL)#quotechar indica que valor usaremos para marcar lo que indique el quoting
   writer.writerows(myData) 
