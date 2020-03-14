@@ -56,12 +56,35 @@ with xlrd.open_workbook(ruta) as libro_excel:
 """
 De esta manera hemos recorrido todas las filas y todas las columnas de nuestro fichero excel que hemos cargado.
 Para crear un fichero excel deberemos de hacer uso de nuestra libreria xlwt como veremos en el ejemplo.
+Imaginemos que queremos pegar los datos de un fichero excel a otro que tenga las mismas hojas.
 """
-import xlrd
+iimport xlrd
 import xlwt
+ruta = 'C:\\....'
+asocs ={}
+with xlrd.open_workbook(ruta) as fichero_lectura:
+    libro_escribir = xlwt.Workbook()
+    for nombre_hojas in fichero_lectura.sheet_names():
+        hoja_lect = fichero_lectura.sheet_by_name(nombre_hojas)
+        hoja_esc = libro_escribir.add_sheet(nombre_hojas)
+        for i in range(hoja_lect.nrows):
+            for j in range(hoja_lect.ncols):
+                valor = hoja_lect.cell(i,j).value
+                hoja_esc.write(i,j,valor) #recordar -- fila, columna, valor
+                
 
-libro_escribir = xlwt.Workbook()
+libro_escribir.save('C:\\....\\fichero_creado.xls')
 
+""" 
+Para finalizar tambien podemos emplear pandas para crear un fichero y recorrerlo
+"""
+import pandas as pd
+with pd.ExcelFile(ruta) as fichero_excel:
+  writer = pd.ExcelWriter(ruta2)
+  for nombre in fichero_excel.sheet_names:
+    df = fichero_excel.parse(nombre)
+    df.to_excel(writer,nombre)
+    writer.save()
 
 
 
