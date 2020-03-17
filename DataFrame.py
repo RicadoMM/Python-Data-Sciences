@@ -1,4 +1,5 @@
 """
+<b>1. INTRODUCCIÓN A LOS DATA FRAME<\b>
 Se trata de uno de los elementos mas empleados en el uso diario de Python, se puede definir a grandes rasgos como un conjunto de filas y de columnas
 que se recogen en una tabla con o sin cabeceras y con indice.
 
@@ -81,3 +82,171 @@ df.iloc[[value,value1,value2],[valuec,valuec1,valuec2]]#Selecciona las filas y c
 
 #loc ---> podemos usarlo de dos maneras buscando el nombre del indice o de las columnas o mediante la seleccion de filas que cumplan un look up condicional.
 #Ambos metodos comparten la misma sintaxis de seleccion de valores, por lo que no la detallaremos tanto.
+df.loc['Python']#Selecciona la fila con el indice indicado.
+df.loc[:,'Dificultad']#Selecciona todas las filas y la columna Dificultad.
+
+#Lo interesante de este punto es la posibilidad de aplicar un look up condicional. Lo que se hace es pasar o un array o pandas serie de True or False al indexer del
+#metodo de busqueda loc seleccionando las filas que tienen True asociado por el array.
+
+df.lol[df['Dificultad'] == 'Media'] #Todas las filas que tengan Dificultad Media seran seleccionadas.
+df.loc[df['Dificultad'] == 'Media' , 'Lenguaje']#Seleccionamos los valores de la columna Lenguaje que cumplen con el criterio.
+df.loc[df['Dificultad'] == 'Media', 'Lenguaje:Salario']
+#IMPORTANTE, CUANDO SELECCIONAMOS UNA UNICA COLUMNA SE NOS DEVUELVE UN PANDAS SERIES, SI SELECCIONAMOS VARIOS SE NOS DEVUELVE UN DATAFRAME
+#PODEMOS CONSEGUIR SIEMPRE UN DATAFRAME UNICAMENTE INDICANDO LA COLUMNA ENTRE CORCHETES ['Lenguaje']
+
+#VAMOS A INDICAR CRITERIOS COMUNES A LA HORA DE SELECCIONAR DATOS DE UN DATA FRAME PARA EL TRABAJO DE CAMPO.
+
+
+# Select rows with first name Antonio, # and all columns between 'city' and 'email'
+data.loc[data['first_name'] == 'Antonio', 'city':'email']
+ 
+# Select rows where the email column ends with 'hotmail.com', include all columns
+data.loc[data['email'].str.endswith("hotmail.com")]   
+ 
+# Select rows with last_name equal to some values, all columns
+data.loc[data['first_name'].isin(['France', 'Tyisha', 'Eric'])]   
+       
+# Select rows with first name Antonio AND hotmail email addresses
+data.loc[data['email'].str.endswith("gmail.com") & (data['first_name'] == 'Antonio')] 
+ 
+# select rows with id column between 100 and 200, and just return 'postal' and 'web' columns
+data.loc[(data['id'] > 100) & (data['id'] <= 200), ['postal', 'web']] 
+ 
+# A lambda function that yields True/False values can also be used.
+# Select rows where the company name has 4 words in it.
+data.loc[data['company_name'].apply(lambda x: len(x.split(' ')) == 4)] 
+ 
+# Selections can be achieved outside of the main .loc for clarity:
+# Form a separate variable with your selections:
+idx = data['company_name'].apply(lambda x: len(x.split(' ')) == 4)
+# Select only the True values in 'idx' and only the 3 columns specified:
+data.loc[idx, ['email', 'first_name', 'company']]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
