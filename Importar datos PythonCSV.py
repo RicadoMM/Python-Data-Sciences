@@ -96,14 +96,18 @@ El paquete csv tiene mas metodos a parte del csv.reader, comentaremos algún int
   
   Tenemos que mencionar tambien la sobrecarga "quoting", nos permite determinar el entrecomillado, podemos indicar que valores 
   van a ir entrecomillados.
-  ===> csv.reader(fichero_csv,delimeter =",",quoting =csv.QUOTE_NONE)
+  ===> csv.reader(fichero_csv,delimeter =",",quotechar = '"',quoquoting =csv.QUOTE_NONE)
   podemos indicar tambien:
     - csv.QUOTE_NONE = ningun valor se entrecomilla
     - csv.QUOTE_NONNUMERIC = valores que no son númericos.
     - csv.QUOTE_MINIMAL = para aquellos que contienen caracteres especiales.
     - csv.QUOTE_ALL = todos los valores se entrecomillan.
 Este punto de QUOTE es sobre todo interesante para cuando tenenemos que crear un nuevo fichero y queremos entrecomillar algo.
-
+Se emplea cuando en un fichero tenemos comas, ; ,o espacios para separar las columnas, cualquier coma o valor indicado en el delimitador,
+que se encuentre entere el valor indicado en el quotechar será considerado como separador de columna, por lo tanto a modo de ejemplo:
+ - Si tuvieramos una fila asi 1;2;"3;4;5" si al abrir el csv indicamos que el separador es delimiter = ';', quotechar = '"' , el tercer valor
+ del array se tomara como un unico valor y no se considera el ; para separar cada valor dentro del mismo.
+Eso ocurriria al cargar un fichero, si es al crearlo, el quotechar nos marcaria con que valor se encomillaria csv.QUOTE_ALL,QUOTE_NONE,etc.
 
 Los dialectos son los elementos que nos permiten delimitar nuestro fichero cuando no  tenemos comillas,etc
 Podemos registrar nuevos dialectos en el lector csv
