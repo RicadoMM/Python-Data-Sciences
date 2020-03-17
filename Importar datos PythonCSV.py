@@ -36,7 +36,7 @@ Vamos a indicar las sobreacargas que soporta este comando de lectura de un fiche
       . si kee_default_na = True y na_values esta vacio, solo se parsean los NaN
       . si keep_default_na = False, y na_values tiene valor, solo los pasados como valor en na_values seran NaN
       . Si na_filter = Flase; los valores de keep_default_na y na_values son ignorados.
-  
+  - quotechar ==> igual que veremos en csv.reader, permite indicar con que caracteres se encuentran representados los caracteres especiales en el fichero csv.
  Una vez cargado nuestro dataframe podemos ver las caracteristicas estadisticas mediante el uso de => df.describe() y mediante df.describe(all)
 
   df.describe {suma de valores(count), media de los valores, desviacion estandar(std),valores máximos y mínimos, valores porcentuales(25%,50%,75%)}
@@ -102,6 +102,8 @@ El paquete csv tiene mas metodos a parte del csv.reader, comentaremos algún int
     - csv.QUOTE_NONNUMERIC = valores que no son númericos.
     - csv.QUOTE_MINIMAL = para aquellos que contienen caracteres especiales.
     - csv.QUOTE_ALL = todos los valores se entrecomillan.
+Este punto de QUOTE es sobre todo interesante para cuando tenenemos que crear un nuevo fichero y queremos entrecomillar algo.
+
 
 Los dialectos son los elementos que nos permiten delimitar nuestro fichero cuando no  tenemos comillas,etc
 Podemos registrar nuevos dialectos en el lector csv
@@ -160,3 +162,10 @@ with open(path, new line ='') as fichero_csv:
     writer.writerow({'emp_name': 'Erica Meyers', 'dept': 'IT', 'birth_month': 'March'})
    
 #Finalente podemos obtener una una lista con todas las filas listoflineas = fichero_csv.readlines()
+'r'	el archivo se abre en modo de solo lectura, no se puede escribir (argumento por defecto).
+'w'	modo de solo escritura (si existe un archivo con el mismo nombre, se borra).
+'a'	modo de agregado (append), los datos escritos se agregan al final del archivo.
+'r+'	el archivo se abre para lectura y escritura al mismo tiempo.
+'wb'	
+el archivo se abre en modo binario, para almacenar cualquier cosa que no sea texto
+
