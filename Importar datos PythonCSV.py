@@ -28,7 +28,7 @@ Vamos a indicar las sobreacargas que soporta este comando de lectura de un fiche
             como parametro para que se cargue.
   - skiprows => nos permite saltarnos columnas que cargamos skiprows = 12
   - index_col => None por defecto, nos permite indicar que columna queremos que sea el indice, es decir el marcador. index_col = 2
-  - skip_blank_lines = True, saltamos las columnas blancas, todos los NaN saldran en blanco.
+  - skip_blank_lines = True, saltamos las columnas blancas, todos los NaN saldran en blanco. Los NaN apareceran en blanco y daran error al parsear los nulos.
   - na_filter => borra las lineas que tienen algun valor NaN. No es recomendable su empleo.
   - na_values => nos permite identificar otros caracteres que se clasificaran como NaN na_values=[""] - ahora las comillas seran tambien NaN
   - keep_default_na => es de tipo Boolean, y por defecto lleva True. Se convina con na_values y na_filter:
