@@ -1,5 +1,15 @@
 """
-<b>1. INTRODUCCIÓN A LOS DATA FRAME<\b>
+INDICE:
+1. INTRODUCCIÓN A LOS DATA FRAME.
+       - Creación de DataFrames
+       - Técnicas comunes de selección de filas y de columnas.
+2. UNIÓN Y CONCATENAR DATAFRAMES.
+3. TRATAMIENTO DE NULOS.
+
+
+
+
+
 Se trata de uno de los elementos mas empleados en el uso diario de Python, se puede definir a grandes rasgos como un conjunto de filas y de columnas
 que se recogen en una tabla con o sin cabeceras y con indice.
 
