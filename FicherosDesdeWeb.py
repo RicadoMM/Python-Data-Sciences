@@ -111,5 +111,23 @@ dFrame.to_json(path)
 #Una vez que tenemos los datos cargados en un fichero csv podemos usar las tecnicas de DataWrangling
 
 
+""" 
+Otra opcion para poder cargar datos desde las paginas de internet (cargar ficeheros) es la siguiente
+"""
+import request
+import contextlib.closing
+import csv
+import codecs
 
+url = "http://wwww........"
+with closing(requests.get(url,stream = True)) as r:
+  reader = csv.reader(codecs.iterdecode(r,iter_lines(),'utf-8'),delimiter = ',')
+  for row in reader:
+    #Procedemos de la misma manera que en el caso anterior en el que hemos empleado requests.
+    """
+    Mediante los comandos de contextlib.closing --> podemos leer directamente los valores devueltos por una respuesta del tipo requests.
+    No es necesario como en el caso anterior que cojamos y pasemos los datos a disco,es decir, los escribamos en un csv.
+    Por otor lado tenemos el comando codecs --> este comando nos permite decodificar de manera directa los datos obtenidos tras la consulta a la página.
+    Recordar que los datos que se nos devuelven son en codigo binario y debemos de cambiarlos a utf-8 que es el formato mas usado.
+    """
 
