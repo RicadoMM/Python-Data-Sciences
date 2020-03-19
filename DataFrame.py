@@ -172,7 +172,15 @@ df2 = df[df['Lenguaje'] = 'Python]
 #por conjunto de datos
 df2 = df[df['Salarios'].isin([35000:40000])]
 
-
+#Map(fun,iterable) ejecuta una funcion o una funcion lambda por cada uno de nuestros valores de las columnas.
+         df['result'] = df['result'].map(lambda x: x.lstrip('+-').rstrip('aAbBcC'))
+         #lstrip elimna lo que indiquemos por la izquierda mientras que rstrip lo elimina por la derecha.
+         
+         
+#Apply para ejecutar una funcion en nuestro dataFrame
+         df2 = df.applay(func,axis =1) #1 se ejecuta en filas 0 en columnas  
+# Apply a lambda function to each column by adding 10 to each value in each column
+modDfObj = dfObj.apply(lambda x : x + 10)
 
 
 
