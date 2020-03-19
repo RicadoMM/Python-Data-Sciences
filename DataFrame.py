@@ -23,7 +23,12 @@ pudiendo
 #Creacion de un DataFrame vacío , solo especificamos las columnas, y los indices por los que vamos a clasificar nuestro DataFrame
 #nos lo crea lleno de valores NaN
 import pandas as pd
+import numpy as np
 df = pd.DataFrama(columns=('Columna1','Columna2','Columna3'))
+df = pd.DataFrame(data=np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9], [40, 50, 60], [23, 35, 37]]), 
+                  index= [2.5, 12.6, 4.8, 4.8, 2.5], 
+                  columns=[48, 49, 50]) #El index hace de indice, columns = indica el nombre las columnas
+
 
 #Creacion de un DataFrame partiendo de un diccionario o de una serie de pandas
 data = {'Lenguaje':['Python','C#','Java'],
@@ -106,7 +111,7 @@ df.loc[df['Dificultad'] == 'Media', 'Lenguaje:Salario']
 
 #VAMOS A INDICAR CRITERIOS COMUNES A LA HORA DE SELECCIONAR DATOS DE UN DATA FRAME PARA EL TRABAJO DE CAMPO.
 
-
+       
 # Select rows with first name Antonio, # and all columns between 'city' and 'email'
 data.loc[data['first_name'] == 'Antonio', 'city':'email']
  
@@ -181,9 +186,21 @@ df2 = df[df['Salarios'].isin([35000:40000])]
          df2 = df.applay(func,axis =1) #1 se ejecuta en filas 0 en columnas  
 # Apply a lambda function to each column by adding 10 to each value in each column
 modDfObj = dfObj.apply(lambda x : x + 10)
+         
+#En caso de tener que renombrar las columnas o las cabeceras de un DataFrame tenemos que:
+         df.rename(columns = ['Nombre nuevo','Nombre Nuevo 2'], inplace = True)
+         #Mediante el inplace no necesitamos devolver un objeto se realiza sobre el que estamos trabajando
+#Si queremos agrupar datos lo tenemos fácil.
+         df.groupby('Lenguaje',sort = False) #Por defecto ordena. Si indicamos false no ordena.
 
-
-
+df.loc[df['Lenguaje'] == 'Pyhton' & df['Salario']>10000].groupby(df['Salario','Ciudad],sort = True)
+                                                                    
+         
+         
+"""
+Pandas series:
+       - Unicamente podemos englobar un key por cada atributo
+       - Se tratan o se pueden comparar como np.ndarrays es decir arrays de n dimensiones
 
 
 
