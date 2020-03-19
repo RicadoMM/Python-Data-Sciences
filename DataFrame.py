@@ -98,7 +98,7 @@ df.loc[:,'Dificultad']#Selecciona todas las filas y la columna Dificultad.
 #Lo interesante de este punto es la posibilidad de aplicar un look up condicional. Lo que se hace es pasar o un array o pandas serie de True or False al indexer del
 #metodo de busqueda loc seleccionando las filas que tienen True asociado por el array.
 
-df.lol[df['Dificultad'] == 'Media'] #Todas las filas que tengan Dificultad Media seran seleccionadas.
+df.loc[df['Dificultad'] == 'Media'] #Todas las filas que tengan Dificultad Media seran seleccionadas.
 df.loc[df['Dificultad'] == 'Media' , 'Lenguaje']#Seleccionamos los valores de la columna Lenguaje que cumplen con el criterio.
 df.loc[df['Dificultad'] == 'Media', 'Lenguaje:Salario']
 #IMPORTANTE, CUANDO SELECCIONAMOS UNA UNICA COLUMNA SE NOS DEVUELVE UN PANDAS SERIES, SI SELECCIONAMOS VARIOS SE NOS DEVUELVE UN DATAFRAME
@@ -133,16 +133,44 @@ idx = data['company_name'].apply(lambda x: len(x.split(' ')) == 4)
 data.loc[idx, ['email', 'first_name', 'company']]
 
 
+#Borrar duplicados
+listado_sin_duplicados = df['Lenguje'].drop_duplicates().values.tolist()
+df.drop_duplicates() #Borra duplicados de todo el dataFrame.
+#Podemos tambien borrar  indices de nuestro dataFrame
+df.reset_index().drop_duplicates(subset = 'index' , keep = 'last',inplace = True).set_index('index')
+#Borrar todos los duplicados del dataFrame no solo de una columna
+df.drop_duplicates()
+""" 
+dentro del metodo drop_duplicates() tenemos las sobrecargas subset y keep
+ - subset --> coge como valor una columna(nombre de columna) o una lista de columnas sobre las que borrar
+ -  keep --> tiene 3 opciones:
+           1. firts = se queda con el primer valor que encuentra y el resto los borra.
+           2. last = el ultimo valor permanece el resto se borran.
+           3. False = se borran todos los valores repetidos.
+
+  -  inplace = True pasamos el valor por referencia por lo tanto el objeto se ve modificado. Con by ref en C#
+  -  inplace = False pasamos el valor como objeto y se nos devuelve un objeto con la accion realizada.
+
+"""
+#Borrar una columna
+df.drop('Lenguaje',axis = 1, inplace = True)
+df.drop(df.columns[[1]],axis = 1)
+#Si queremos borrar una fila, debemos de indicar axis = 0
+
+#Ordenar nuestro DataFrame en funcion de una columna
+df.sort_values('Lenguaje',inplace = True)
+
+#Reemplazar los valores de una columna, se ejecuta sobre todos los valores.
+df['Lenguaje'] = df['Lenguaje'].replace({'#':''},regex = True)
+df.replace({'#':''},regex = True) #Se reemplaza de todo el DataFrame
 
 
-
-
-
-
-
-
-
-
+#Filtrar por columnas en Pandas
+df2 = df.filter(items=['Lenguaje','Salario'])
+#por valor de columna
+df2 = df[df['Lenguaje'] = 'Python]
+#por conjunto de datos
+df2 = df[df['Salarios'].isin([35000:40000])]
 
 
 
